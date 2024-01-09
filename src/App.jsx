@@ -8,7 +8,7 @@ import fetchEncounters from "./functions/fetchEncounters";
 import fetchEvolutions from "./functions/fetchEvolutions";
 
 function App() {
-  const [numbers, setNumbers] = useState(generateRandom());
+  const [numbers, setNumbers] = useState(generateRandom(5));
   const [pokeData, setPokeData] = useState([]);
   const [pokeSpec, setPokeSpec] = useState([]);
   const [pokeEnc, setPokeEnc] = useState([]);
@@ -28,17 +28,13 @@ function App() {
       setPokeSpec(speciesData);
       setPokeEnc(encountersData);
       setPokeEvo(evoData);
-      console.log(regData);
-      console.log(speciesData);
-      console.log(encountersData);
-      console.log(evoData);
     };
 
     fetchData();
   }, [numbers]);
 
   const regenerateNumbers = () => {
-    setNumbers(generateRandom());
+    setNumbers(generateRandom(5));
   };
 
   return (
