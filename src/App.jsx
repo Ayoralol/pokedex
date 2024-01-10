@@ -13,9 +13,11 @@ function App() {
   const [pokeSpec, setPokeSpec] = useState([]);
   const [pokeEnc, setPokeEnc] = useState([]);
   const [pokeEvo, setPokeEvo] = useState([]);
+  const [loadingFetch, setLoadingFetch] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
+      setLoadingFetch(true);
       const regData = await fetchPokemon(numbers);
       const speciesData = await fetchPokemonSpecies(numbers);
       const encountersData = await fetchEncounters(numbers);
@@ -28,6 +30,7 @@ function App() {
       setPokeSpec(speciesData);
       setPokeEnc(encountersData);
       setPokeEvo(evoData);
+      setLoadingFetch(false);
     };
 
     fetchData();
@@ -40,12 +43,17 @@ function App() {
   return (
     <>
       <button onClick={regenerateNumbers}>Generate</button>
-      <Grid
-        pokeMain={pokeData}
-        pokeEnc={pokeEnc}
-        pokeSpec={pokeSpec}
-        pokeEvo={pokeEvo}
-      />
+      {!loadingFetch ? (
+        <Grid
+          loadingFetch={loadingFetch}
+          pokeMain={pokeData}
+          pokeEnc={pokeEnc}
+          pokeSpec={pokeSpec}
+          pokeEvo={pokeEvo}
+        />
+      ) : (
+        <p>Loading Pokemon...</p>
+      )}
     </>
   );
 }

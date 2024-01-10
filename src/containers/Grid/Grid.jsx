@@ -5,13 +5,13 @@ import styles from "./Grid.module.scss";
 const Grid = ({pokeMain, pokeEnc, pokeSpec, pokeEvo}) => {
   return (
     <div className={styles.grid}>
-      {pokeMain.map((pokemon) => (
+      {pokeMain.map((pokemon, ind) => (
         <Card
           key={pokemon.id}
           pokemon={pokemon}
-          pokeEnc={pokeEnc}
-          pokeSpec={pokeSpec}
-          pokeEvo={pokeEvo}
+          pokeEnc={pokeEnc[ind]}
+          pokeSpec={pokeSpec[ind]}
+          pokeEvo={pokeEvo[ind]}
         />
       ))}
     </div>

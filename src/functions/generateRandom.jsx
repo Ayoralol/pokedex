@@ -5,7 +5,6 @@ const generateRandom = (amount) => {
   while (randomNumbers.size < amount) {
     randomNumbers.add(Math.floor(Math.random() * 1026));
   }
-  console.log("Random numbers Generated", Array.from(randomNumbers));
   return Array.from(randomNumbers);
 };
 
