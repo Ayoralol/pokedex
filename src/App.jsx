@@ -8,6 +8,8 @@ import fetchPokemonSpecies from "./functions/fetchPokemonSpecies";
 import fetchEncounters from "./functions/fetchEncounters";
 import fetchEvolutions from "./functions/fetchEvolutions";
 import fetchAllPokemon from "./functions/fetchAllPokemon";
+import fetchAllTypes from "./functions/fetchAllTypes";
+import TypeSearch from "./components/TypeSearch/TypeSearch";
 
 function App() {
   const [numbers, setNumbers] = useState([59, 133]);
@@ -17,6 +19,7 @@ function App() {
   const [pokeEvo, setPokeEvo] = useState([]);
   const [loadingFetch, setLoadingFetch] = useState(false);
   const [allPokemon, setAllPokemon] = useState([]);
+  const [allTypes, setAllTypes] = useState([]);
 
   useEffect(() => {
     const fetchAll = async () => {
@@ -24,7 +27,13 @@ function App() {
       setAllPokemon(allPoke);
     };
 
+    const fetchAllType = async () => {
+      const allType = await fetchAllTypes();
+      setAllTypes(allType);
+    };
+
     fetchAll();
+    fetchAllType();
   }, []);
 
   useEffect(() => {
@@ -56,10 +65,25 @@ function App() {
     setNumbers(results);
   };
 
+  const handleTypeSearch = (type1, type2) => {
+    const type1Pokemon = allTypes.find((type) => type.type === type1).pokemon;
+    let dualTypePokemon = type1Pokemon;
+
+    if (type2 && type2 !== "") {
+      const type2Pokemon = allTypes.find((type) => type.type === type2).pokemon;
+      dualTypePokemon = type1Pokemon.filter((pokemon) =>
+        type2Pokemon.includes(pokemon)
+      );
+    }
+
+    setNumbers(dualTypePokemon.slice(0, 20));
+  };
+
   return (
     <>
       <button onClick={regenerateNumbers}>Generate Random Team</button>
       <Search allPokemon={allPokemon} onSearchResults={handleSearchResults} />
+      <TypeSearch allTypes={allTypes} onTypeSearch={handleTypeSearch} />
       {!loadingFetch ? (
         <Grid
           loadingFetch={loadingFetch}
