@@ -8,7 +8,7 @@ import fetchEncounters from "./functions/fetchEncounters";
 import fetchEvolutions from "./functions/fetchEvolutions";
 
 function App() {
-  const [numbers, setNumbers] = useState(generateRandom(5));
+  const [numbers, setNumbers] = useState([59, 133]);
   const [pokeData, setPokeData] = useState([]);
   const [pokeSpec, setPokeSpec] = useState([]);
   const [pokeEnc, setPokeEnc] = useState([]);

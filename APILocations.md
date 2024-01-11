@@ -16,7 +16,7 @@
 
 - Types - .type[0/1].type.name
 
-- Base Stats - .stats[1-6].base_stat (Stat order is HP, Attack,
+- Base Stats - .stats[0-5].base_stat (Stat order is HP, Attack,
   Defense, Special-Attack, Special-Defence, Speed)
 
 - Sprite + Shiny Sprite - "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{id}.png", "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/{id}.png"
@@ -52,16 +52,18 @@
 
 - Evolution Chain
 
-  - .chain.name - lowest pokemon evolution
+  - .chain.species.name - lowest pokemon evolution
 
-  - .chain.evolves_to[0/1].name - second pokemon evolution
+  - .chain.evolves_to[0].species.name - second pokemon evolution
 
-    - .chain.evolves_to[0/1].evolution_details - evolution parameters
-    - .chain.evolves_to[0/1].evolution_details.trigger.name - "level-up", "trade", etc.
+    - .chain.evolves_to[0].evolution_details - evolution parameters
+    - .chain.evolves_to[0].evolution_details.trigger.name - "level-up", "trade", etc.
 
-  - .chain.evolves_to[0/1].evolves_to[0/1].name - second pokemon evolution
-    - .chain.evolves_to[0/1].evolves_to[0/1].evolution_details - evolution parameters
-    - .chain.evolves_to[0/1].evolves_to[0/1].evolution_details.trigger.name - "level-up", "trade", etc.
+  - .chain.evolves_to[0].evolves_to[0].species.name - second pokemon evolution
+    - .chain.evolves_to[0].evolves_to[0].evolution_details - evolution parameters
+    - .chain.evolves_to[0].evolves_to[0].evolution_details.trigger.name - "level-up", "trade", etc.
+
+- EVOLVES_TO IS AN ARRAY OF OBJECTS NOT MULTIPLE ARRAYS
 
 - EEVEE needs special parameters as it has 7 eeveelutions
 

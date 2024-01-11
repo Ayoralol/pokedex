@@ -14,3 +14,5 @@
 - Detailed Information
   - most everything except evolutions
 - Evolution Information
+
+## Have prefill for search bar including picture using url.split("/")[6]

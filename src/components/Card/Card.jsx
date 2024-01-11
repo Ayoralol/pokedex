@@ -17,7 +17,7 @@ const Card = ({pokemon, pokeEnc, pokeSpec, pokeEvo}) => {
 
   return (
     <div onClick={handleOpenModal}>
-      <p>{pokemon.name}</p>
+      <p>{pokeSpec.name}</p>
       <p>#{pokemon.id}</p>
       <img src={pokemon.sprites.front_default} alt={pokemon.name} />
       <p>{types.join(" | ")}</p>
