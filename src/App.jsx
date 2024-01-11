@@ -1,11 +1,13 @@
 import React, {useState, useEffect} from "react";
 import "./App.scss";
 import Grid from "./containers/Grid/Grid";
+import Search from "./containers/Search/Search";
 import generateRandom from "./functions/generateRandom";
 import fetchPokemon from "./functions/fetchPokemon";
 import fetchPokemonSpecies from "./functions/fetchPokemonSpecies";
 import fetchEncounters from "./functions/fetchEncounters";
 import fetchEvolutions from "./functions/fetchEvolutions";
+import fetchAllPokemon from "./functions/fetchAllPokemon";
 
 function App() {
   const [numbers, setNumbers] = useState([59, 133]);
@@ -14,6 +16,16 @@ function App() {
   const [pokeEnc, setPokeEnc] = useState([]);
   const [pokeEvo, setPokeEvo] = useState([]);
   const [loadingFetch, setLoadingFetch] = useState(false);
+  const [allPokemon, setAllPokemon] = useState([]);
+
+  useEffect(() => {
+    const fetchAll = async () => {
+      const allPoke = await fetchAllPokemon();
+      setAllPokemon(allPoke);
+    };
+
+    fetchAll();
+  }, []);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -37,12 +49,17 @@ function App() {
   }, [numbers]);
 
   const regenerateNumbers = () => {
-    setNumbers(generateRandom(5));
+    setNumbers(generateRandom(6));
+  };
+
+  const handleSearchResults = (results) => {
+    setNumbers(results);
   };
 
   return (
     <>
-      <button onClick={regenerateNumbers}>Generate</button>
+      <button onClick={regenerateNumbers}>Generate Random Team</button>
+      <Search allPokemon={allPokemon} onSearchResults={handleSearchResults} />
       {!loadingFetch ? (
         <Grid
           loadingFetch={loadingFetch}

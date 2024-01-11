@@ -1,5 +1,9 @@
-const renderEncounters = (data) => {
-  return data.map((item, index) => {
+const EncounterInformation = ({pokeEnc}) => {
+  if (pokeEnc.length === 0) {
+    return <p>No wild encounter information</p>;
+  }
+
+  return pokeEnc.map((item, index) => {
     const areaName = item.location_area.name;
     const method = item.version_details[0].encounter_details[0].method.name;
     const versions = [
@@ -16,4 +20,4 @@ const renderEncounters = (data) => {
   });
 };
 
-export default renderEncounters;
+export default EncounterInformation;

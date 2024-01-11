@@ -1,19 +1,19 @@
-const renderEvolutions = (evolutionChain, index = 0) => {
-  if (!evolutionChain) {
+const EvolutionInformation = ({pokeEvo, index = 0}) => {
+  if (!pokeEvo) {
     return null;
   }
 
   return (
     <div key={index}>
-      <h2>{evolutionChain.species.name}</h2>
-      <p>#{evolutionChain.species.url.split("/")[6]}</p>
+      <h2>{pokeEvo.species.name}</h2>
+      <p>#{pokeEvo.species.url.split("/")[6]}</p>
       <img
         src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${
-          evolutionChain.species.url.split("/")[6]
+          pokeEvo.species.url.split("/")[6]
         }.png`}
-        alt={evolutionChain.species.name}
+        alt={pokeEvo.species.name}
       />
-      {evolutionChain.evolves_to.map((nextEvo, index) => {
+      {pokeEvo.evolves_to.map((nextEvo, index) => {
         const evolutionDetails = nextEvo.evolution_details[0];
         const conditions = Object.keys(evolutionDetails)
           .filter(
@@ -34,7 +34,7 @@ const renderEvolutions = (evolutionChain, index = 0) => {
         return (
           <div key={index}>
             <p>Evolution Conditions: {conditions}</p>
-            {renderEvolutions(nextEvo, index)}
+            <EvolutionInformation pokeEvo={nextEvo} index={index} />
           </div>
         );
       })}
@@ -42,4 +42,4 @@ const renderEvolutions = (evolutionChain, index = 0) => {
   );
 };
 
-export default renderEvolutions;
+export default EvolutionInformation;
