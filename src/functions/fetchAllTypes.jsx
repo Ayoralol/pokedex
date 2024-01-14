@@ -2,20 +2,21 @@ import fetchFunction from "./fetchFunction";
 
 const fetchAllTypes = async () => {
   const allTypes = [];
+  const fetchPromises = [];
 
   for (let i = 1; i <= 18; i++) {
-    const typeData = await fetchFunction(
-      `https://pokeapi.co/api/v2/type/${i}/`
-    );
-    const typeObject = {
-      type: typeData.name,
-      pokemon: typeData.pokemon
-        .map((pokemon) => pokemon.pokemon.url.split("/")[6])
-        .filter((number) => number <= 1025),
-    };
-    allTypes.push(typeObject);
+    const fetchPromise = fetchFunction(
+      `https://pokeapi.co/api/v2/type/${i}`
+    ).then((typeData) => {
+      const pokemonNumbers = typeData.pokemon.map(
+        (poke) => poke.pokemon.url.split("/")[6]
+      );
+      allTypes.push({type: typeData.name, pokemon: pokemonNumbers});
+    });
+    fetchPromises.push(fetchPromise);
   }
 
+  await Promise.all(fetchPromises);
   return allTypes;
 };
 

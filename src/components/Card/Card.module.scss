@@ -1,0 +1,33 @@
+.cont {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  height: 165px;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: all 0.1s ease-in-out;
+  &:hover {
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.3);
+  }
+}
+
+.name {
+  text-transform: capitalize;
+  font-weight: 500;
+  font-size: 18px;
+}
+
+.num {
+  font-size: 16px;
+}
+
+.img {
+  max-width: 75%;
+}
+
+.types {
+  text-transform: capitalize;
+}

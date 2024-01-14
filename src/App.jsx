@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from "react";
-import "./App.scss";
 import Grid from "./containers/Grid/Grid";
 import Search from "./containers/Search/Search";
 import generateRandom from "./functions/generateRandom";
@@ -9,10 +8,10 @@ import fetchEncounters from "./functions/fetchEncounters";
 import fetchEvolutions from "./functions/fetchEvolutions";
 import fetchAllPokemon from "./functions/fetchAllPokemon";
 import fetchAllTypes from "./functions/fetchAllTypes";
-import TypeSearch from "./components/TypeSearch/TypeSearch";
+import styles from "./App.module.scss";
 
 function App() {
-  const [numbers, setNumbers] = useState([59, 133]);
+  const [numbers, setNumbers] = useState([]);
   const [pokeData, setPokeData] = useState([]);
   const [pokeSpec, setPokeSpec] = useState([]);
   const [pokeEnc, setPokeEnc] = useState([]);
@@ -34,6 +33,7 @@ function App() {
 
     fetchAll();
     fetchAllType();
+    setNumbers(generateRandom(28));
   }, []);
 
   useEffect(() => {
@@ -76,14 +76,18 @@ function App() {
       );
     }
 
-    setNumbers(dualTypePokemon.slice(0, 20));
+    setNumbers(dualTypePokemon.slice(0, 28));
   };
 
   return (
-    <>
-      <button onClick={regenerateNumbers}>Generate Random Team</button>
-      <Search allPokemon={allPokemon} onSearchResults={handleSearchResults} />
-      <TypeSearch allTypes={allTypes} onTypeSearch={handleTypeSearch} />
+    <div className={styles.cont}>
+      <Search
+        allPokemon={allPokemon}
+        onSearchResults={handleSearchResults}
+        regenerateNumbers={regenerateNumbers}
+        allTypes={allTypes}
+        onTypeSearch={handleTypeSearch}
+      />
       {!loadingFetch ? (
         <Grid
           loadingFetch={loadingFetch}
@@ -93,15 +97,10 @@ function App() {
           pokeEvo={pokeEvo}
         />
       ) : (
-        <p>Loading Pokemon...</p>
+        <p className={styles.load}>Loading Pokemon...</p>
       )}
-    </>
+    </div>
   );
 }
 
 export default App;
-
-// generate numbers OR search functionality
-// => fetch that data
-// => get data parameters
-// => pass data to grid

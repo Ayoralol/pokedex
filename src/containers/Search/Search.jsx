@@ -1,7 +1,15 @@
 import React, {useState} from "react";
 import SearchBar from "../../components/SearchBar/SearchBar";
+import TypeSearch from "../TypeSearch/TypeSearch";
+import styles from "./Search.module.scss";
 
-function Search({allPokemon, onSearchResults}) {
+function Search({
+  allPokemon,
+  onSearchResults,
+  regenerateNumbers,
+  allTypes,
+  onTypeSearch,
+}) {
   const [searchTerm, setSearchTerm] = useState("");
 
   const handleSearchChange = (event) => {
@@ -21,11 +29,17 @@ function Search({allPokemon, onSearchResults}) {
   };
 
   return (
-    <SearchBar
-      searchTerm={searchTerm}
-      onSearchChange={handleSearchChange}
-      onSearchSubmit={handleSearchSubmit}
-    />
+    <div className={styles.cont}>
+      <SearchBar
+        searchTerm={searchTerm}
+        onSearchChange={handleSearchChange}
+        onSearchSubmit={handleSearchSubmit}
+      />
+      <button onClick={regenerateNumbers} className={styles.btn}>
+        Generate Random Team
+      </button>
+      <TypeSearch allTypes={allTypes} onTypeSearch={onTypeSearch} />
+    </div>
   );
 }
 

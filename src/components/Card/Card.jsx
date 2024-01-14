@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import Modal from "../../containers/Modal/Modal";
+import styles from "./Card.module.scss";
 
 const Card = ({pokemon, pokeEnc, pokeSpec, pokeEvo}) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -16,11 +17,15 @@ const Card = ({pokemon, pokeEnc, pokeSpec, pokeEvo}) => {
   let types = pokemon.types.map((type) => type.type.name);
 
   return (
-    <div onClick={handleOpenModal}>
-      <p>{pokeSpec.name}</p>
-      <p>#{pokemon.id}</p>
-      <img src={pokemon.sprites.front_default} alt={pokemon.name} />
-      <p>{types.join(" | ")}</p>
+    <div onClick={handleOpenModal} className={styles.cont}>
+      <p className={styles.name}>{pokeSpec.name}</p>
+      <p className={styles.num}>#{pokemon.id}</p>
+      <img
+        src={pokemon.sprites.front_default}
+        alt={pokemon.name}
+        className={styles.img}
+      />
+      <p className={styles.types}>{types.join(" | ")}</p>
       <Modal
         isOpen={isModalOpen}
         onClose={handleCloseModal}

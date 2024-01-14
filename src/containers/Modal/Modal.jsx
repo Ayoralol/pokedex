@@ -8,6 +8,7 @@ import DetailedInformation from "../../components/DetailedInformation/DetailedIn
 import MovesInformation from "../../components/MovesInformation/MovesInformation.jsx";
 import EncounterInformation from "../../components/EncounterInformation/EncounterInformation.jsx";
 import EvolutionInformation from "../../components/EvolutionInformation/EvolutionInformation.jsx";
+import styles from "./Modal.module.scss";
 
 const Modal = ({
   isOpen,
@@ -49,46 +50,51 @@ const Modal = ({
   };
 
   return (
-    <div>
-      <ModalNav setSelectedSection={setSelectedSection} />
-      <button onClick={onClose}>Close</button>
-
-      {/* General Information */}
-      {selectedSection === "General Information" && (
-        <GeneralInformation
-          pokemon={pokemon}
-          types={types}
-          pokeSpec={pokeSpec}
-          flavorText={flavorText}
-          isShiny={isShiny}
-          toggleShiny={toggleShiny}
+    <div onClick={onClose} className={styles.back}>
+      <div
+        onClick={(e) => {
+          e.stopPropagation();
+        }}
+        className={styles.cont}>
+        <ModalNav
+          setSelectedSection={setSelectedSection}
+          selected={selectedSection}
         />
-      )}
-
-      {/* Detailed Information */}
-      {selectedSection === "Detailed Information" && (
-        <DetailedInformation
-          pokemon={pokemon}
-          pokeSpec={pokeSpec}
-          eggGroups={eggGroups}
-          abilities={abilities}
-        />
-      )}
-
-      {/* Evolution Information */}
-      {selectedSection === "Evolution Information" && (
-        <EvolutionInformation pokeEvo={pokeEvo.chain} />
-      )}
-
-      {/* Moves Information */}
-      {selectedSection === "Moves Information" && (
-        <MovesInformation moves={pokemon.moves} />
-      )}
-
-      {/* Encounter Information */}
-      {selectedSection === "Encounter Information" && (
-        <EncounterInformation pokeEnc={pokeEnc} />
-      )}
+        {/* General Information */}
+        {selectedSection === "General Information" && (
+          <GeneralInformation
+            pokemon={pokemon}
+            types={types}
+            pokeSpec={pokeSpec}
+            flavorText={flavorText}
+            isShiny={isShiny}
+            toggleShiny={toggleShiny}
+          />
+        )}
+        {/* Detailed Information */}
+        {selectedSection === "Detailed Information" && (
+          <DetailedInformation
+            pokemon={pokemon}
+            pokeSpec={pokeSpec}
+            eggGroups={eggGroups}
+            abilities={abilities}
+            isShiny={isShiny}
+            toggleShiny={toggleShiny}
+          />
+        )}
+        {/* Evolution Information */}
+        {selectedSection === "Evolution Information" && (
+          <EvolutionInformation pokeEvo={pokeEvo.chain} />
+        )}
+        {/* Moves Information */}
+        {selectedSection === "Moves Information" && (
+          <MovesInformation moves={pokemon.moves} />
+        )}
+        {/* Encounter Information */}
+        {selectedSection === "Encounter Information" && (
+          <EncounterInformation pokeEnc={pokeEnc} />
+        )}
+      </div>
     </div>
   );
 };

@@ -1,0 +1,55 @@
+.cont {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 90%;
+  width: 100%;
+  &_left {
+    width: 40%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    .name {
+      text-transform: capitalize;
+    }
+
+    .num {
+    }
+
+    .img {
+      width: 50%;
+    }
+  }
+  &_right {
+    width: 60%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    &_text {
+      margin: 10px;
+      text-transform: capitalize;
+    }
+    &_flav {
+      margin: 10px;
+    }
+  }
+}
+
+.btn {
+  width: 70px;
+  height: 25px;
+  border-radius: 5px;
+  border: 2px solid lightgray;
+  background-color: rgba(0, 0, 0, 0);
+  transition: all 0.1s ease-in-out;
+  cursor: pointer;
+  &:hover {
+    background-color: rgb(199, 160, 8);
+    border: 2px solid rgb(199, 160, 8);
+    color: white;
+  }
+}

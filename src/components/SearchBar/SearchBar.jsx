@@ -1,4 +1,4 @@
-import React from "react";
+import styles from "./SearchBar.module.scss";
 
 const SearchBar = ({searchTerm, onSearchChange, onSearchSubmit}) => {
   const handleSubmit = (event) => {
@@ -7,14 +7,17 @@ const SearchBar = ({searchTerm, onSearchChange, onSearchSubmit}) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className={styles.form}>
       <input
         type="text"
         value={searchTerm}
         onChange={onSearchChange}
         placeholder="Search Pokémon"
+        className={styles.input}
       />
-      <button type="submit">Search</button>
+      <button type="submit" className={styles.btn}>
+        Search
+      </button>
     </form>
   );
 };

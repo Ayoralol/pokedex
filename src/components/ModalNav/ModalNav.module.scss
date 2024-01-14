@@ -1,0 +1,48 @@
+.cont {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  height: 60px;
+  cursor: pointer;
+}
+
+.select {
+  //   border: 1px solid red;
+  width: 20%;
+  height: 85%;
+  border-radius: 0 0 10px 10px;
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.1s ease-in-out;
+  background-color: rgba(106, 158, 206, 0.8);
+  &:hover {
+    background-color: rgba(86, 136, 182, 0.8);
+  }
+  &.selected {
+    background-color: rgba(86, 136, 182, 1);
+    height: 100%;
+    cursor: default;
+  }
+  &_2 {
+    background-color: rgba(42, 117, 187, 0.8);
+    &:hover {
+      background-color: rgba(32, 98, 160, 0.8);
+    }
+    &.selected {
+      background-color: rgba(32, 98, 160, 1);
+      height: 100%;
+      cursor: default;
+    }
+  }
+}
+
+.text {
+  font-weight: 500;
+  font-size: 18px;
+}
+
+// background-color: rgb(199, 160, 8);
+// background-color: rgb(42, 117, 187);
