@@ -1,0 +1,44 @@
+.form {
+}
+
+.select {
+  width: 100px;
+  height: 25px;
+  border-radius: 5px;
+  border: 2px solid lightgray;
+  background-color: rgba(0, 0, 0, 0);
+  transition: all 0.05s ease-in-out;
+  padding: 1px 0px 1px 10px;
+  margin-right: 5px;
+  text-transform: capitalize;
+  &::placeholder {
+    color: darkgray;
+  }
+  &:focus {
+    background-color: rgb(42, 117, 187);
+    border: 2px solid rgb(42, 117, 187);
+    color: white;
+    &::placeholder {
+      color: white;
+    }
+  }
+}
+
+.option {
+  text-transform: capitalize;
+}
+
+.btn {
+  width: 70px;
+  height: 25px;
+  border-radius: 5px;
+  border: 2px solid lightgray;
+  background-color: rgba(0, 0, 0, 0);
+  cursor: pointer;
+  transition: all 0.1s ease-in-out;
+  &:hover {
+    background-color: rgb(199, 160, 8);
+    border: 2px solid rgb(199, 160, 8);
+    color: white;
+  }
+}
